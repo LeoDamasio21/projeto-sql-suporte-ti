@@ -1,26 +1,36 @@
-# Projeto SQL – Suporte TI
-
-Projeto básico em SQL Server para prática dos fundamentos de banco de dados.
-
-## Tecnologias
-- SQL Server Express
-- T-SQL
-
-## O que foi feito
-- Criação de tabela de clientes
-- Inserção de dados
-- Consulta com SELECT
-
-Projeto acadêmico para fins de aprendizado.
-
+-- Tabela de clientes
 CREATE TABLE Clientes (
     IdCliente INT IDENTITY PRIMARY KEY,
     Nome VARCHAR(100),
-    Email VARCHAR(100)
+    Email VARCHAR(100),
+    Telefone VARCHAR(20)
 );
 
-INSERT INTO Clientes (Nome, Email) VALUES
-('João Silva', 'joao@email.com'),
-('Maria Souza', 'maria@email.com');
+-- Tabela de chamados
+CREATE TABLE Chamados (
+    IdChamado INT IDENTITY PRIMARY KEY,
+    IdCliente INT,
+    Descricao VARCHAR(255),
+    StatusChamado VARCHAR(30),
+    DataAbertura DATE,
+    FOREIGN KEY (IdCliente) REFERENCES Clientes(IdCliente)
+);
 
-SELECT * FROM Clientes;
+-- Inserindo clientes
+INSERT INTO Clientes (Nome, Email, Telefone) VALUES
+('João Silva', 'joao@email.com', '119999999'),
+('Maria Souza', 'maria@email.com', '118888888');
+
+-- Inserindo chamados
+INSERT INTO Chamados (IdCliente, Descricao, StatusChamado, DataAbertura) VALUES
+(1, 'Problema de acesso ao sistema', 'Aberto', '2025-01-02'),
+(2, 'Erro ao cadastrar pedido', 'Em atendimento', '2025-01-03');
+
+-- Consulta básica
+SELECT 
+    c.Nome,
+    ch.Descricao,
+    ch.StatusChamado,
+    ch.DataAbertura
+FROM Chamados ch
+JOIN Clientes c ON ch.IdCliente = c.IdCliente; 
