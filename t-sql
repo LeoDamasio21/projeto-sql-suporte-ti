@@ -1,0 +1,26 @@
+# Projeto SQL – Suporte TI
+
+Projeto básico em SQL Server para prática dos fundamentos de banco de dados.
+
+## Tecnologias
+- SQL Server Express
+- T-SQL
+
+## O que foi feito
+- Criação de tabela de clientes
+- Inserção de dados
+- Consulta com SELECT
+
+Projeto acadêmico para fins de aprendizado.
+
+CREATE TABLE Clientes (
+    IdCliente INT IDENTITY PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100)
+);
+
+INSERT INTO Clientes (Nome, Email) VALUES
+('João Silva', 'joao@email.com'),
+('Maria Souza', 'maria@email.com');
+
+SELECT * FROM Clientes;
